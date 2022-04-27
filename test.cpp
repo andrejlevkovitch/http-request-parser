@@ -52,6 +52,19 @@
                 << str << std::endl;                                          \
       return EXIT_FAILURE;                                                    \
     }                                                                         \
+    if (val.content_length != 0 && val.body == nullptr) {                     \
+      std::cerr << "expected body, but body is null"                          \
+                << "\n"                                                       \
+                << str << std::endl;                                          \
+      return EXIT_FAILURE;                                                    \
+    }                                                                         \
+    if (val.content_length != 0 &&                                            \
+        val.content_length != strlen((const char *)val.body)) {               \
+      std::cerr << "invalid body lenght, expected `" << val.content_length    \
+                << "`, got: " << strlen((const char *)val.body) << "\n"       \
+                << str << std::endl;                                          \
+      return EXIT_FAILURE;                                                    \
+    }                                                                         \
     if (val.keep_alive != kp_alive) {                                         \
       std::cerr << "invalid keep_alive, expected `" << kp_alive               \
                 << "`, got: " << val.keep_alive << "\n"                       \

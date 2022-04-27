@@ -366,6 +366,10 @@ request_parser::status request_parser::parse(const void *   buf,
       }
       break;
     case body: {
+      if (body_readed_ == 0) {
+        req.body = iter;
+      }
+
       long content_left = req.content_length - body_readed_;
       long buf_left     = octets + len - iter;
       if (content_left == buf_left) {
