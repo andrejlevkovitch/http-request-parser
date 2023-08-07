@@ -75,10 +75,10 @@ request_parser::request_parser() noexcept
     , body_readed_{0} {
 }
 
-request_parser::status request_parser::parse(const void *   buf,
+request_parser::status request_parser::parse(const void    *buf,
                                              size_t         len,
                                              http::request &req,
-                                             size_t *       parsed) noexcept {
+                                             size_t        *parsed) noexcept {
   enum state {
     none,
     verb,
@@ -360,7 +360,7 @@ request_parser::status request_parser::parse(const void *   buf,
           retval = status::done;
           ++iter;
         } else {
-          state_ = body;
+          state_ = state::body;
           retval = (status)(status::headers_done | status::in_complete);
         }
       }
