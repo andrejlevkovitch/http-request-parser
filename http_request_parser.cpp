@@ -384,7 +384,7 @@ request_parser::status request_parser::parse(const void    *buf,
         iter += content_left;
       } else {
         body_readed_ += buf_left;
-        state_ = body;
+        state_ = state::body;
         retval = (status)(status::headers_done | status::in_complete);
         iter   = octets + len - 1 /*because we increment iter in for loop*/;
       }
