@@ -1,8 +1,6 @@
 #include "http_request_parser.hpp"
-#include <algorithm>
 #include <cstddef>
 #include <cstring>
-#include <iterator>
 #include <string>
 #include <unordered_map>
 
@@ -43,7 +41,7 @@ string_case_insensetive_hash::operator()(std::string str) const noexcept {
     ch = tolower(ch);
   }
   return std::hash<std::string>()(str);
-};
+}
 
 bool string_case_insensetive_comp::operator()(
     const std::string &lhs,
